@@ -1,13 +1,13 @@
 <?php
-class SessionHellper{
+class SessionHelper{
     function __construct(){
     }
 
 
     function login($user){
         session_start();
-        $_SESSION["usuario"] = $user->usuario;                
-        $_SESSION["rol"] = $user->rol;
+        $_SESSION["DNI"] = $user->usuario;                
+        //$_SESSION["rol"] = $user->rol;
     }
 
     function logout() {
@@ -19,7 +19,7 @@ class SessionHellper{
     function checkLoggedIn() {
         if (session_status() != PHP_SESSION_ACTIVE)
             session_start();
-        if (isset($_SESSION['usuario'])) {
+        if (isset($_SESSION['DNI'])) {
             header('Location: ' . BASE_URL);
             die();
         }
@@ -29,8 +29,8 @@ class SessionHellper{
     function getLoggedUser() {
         if (session_status() != PHP_SESSION_ACTIVE)
             session_start();
-        if(isset($_SESSION['usuario']))
-            return $_SESSION['usuario'];
+        if(isset($_SESSION['DNI']))
+            return $_SESSION['DNI'];
     }
 
 
@@ -38,7 +38,7 @@ class SessionHellper{
     function showState(){
         if (session_status() != PHP_SESSION_ACTIVE)
             session_start();
-        if (isset($_SESSION['usuario'])){
+        if (isset($_SESSION['DNI'])){
             return "Logout";
         }else{
             return "Login";
@@ -48,8 +48,8 @@ class SessionHellper{
     function showRol(){
         if (session_status() != PHP_SESSION_ACTIVE)
             session_start();
-        if(isset($_SESSION["usuario"])){
-            return $_SESSION["rol"];
+        if(isset($_SESSION["DNI"])){
+            return; //$_SESSION["rol"];
         }     
         return;
         
