@@ -14,12 +14,12 @@ class AdminModel{
     return $user;
    }
 
-    function getUsers(){
+   /* function getUsers(){
         $consulta = $this->db->prepare('SELECT * FROM usuarios');
         $consulta->execute();
         $users = $consulta->fetchAll(PDO :: FETCH_OBJ);
         return $users;
-    }
+    }*/
 
     //SUPONEMOS QUE EL ALTA DE UN USUARIO ADMINISTRADOR LO HACE QUIEN BRINDA EL SERVICIO DE TURNO FACIL
     //TANTO EL ALTA COMO LA BAJA DE ADMINISTRADORES SE DEBERIA REALIZAR DIRECTAMENTE A LA BASE DE DATOS

@@ -18,18 +18,19 @@ class LoginAdministrativoController{
 
     function login(){
         //$this->sessionHelper->checkLoggedIn();
-        $this->loginAdminView->showLogin();
+        $this->loginAdminView->showLoginAdmin();
         //$this->sessionHelper->isLogged()
     }
 
     function verify(){
-        if (!empty($_POST['usuario']) && !empty($_POST['pass'])){
+        if (!empty($_POST['usuario']) && !empty($_POST['pass']) && !empty($_POST['institucion'])){
             $usuario = $_POST['usuario'];
             $pass = $_POST['pass'];
-     
+            $inst = $_POST['institucion'];
+            
 
             $usuarioAdministrativo = $this->adminModel->getUser($usuario);
-            if ($usuarioAdministrativo && password_verify($pass, ($usuarioAdministrativo->pass))){
+            if ($usuarioAdministrativo && password_verify($pass, ($usuarioAdministrativo->pass)) && $usuarioAdministrativo->id_institucion == $inst){
                 $this->sessionHelper->login($usuarioAdministrativo);             
                 $this->loginAdminView->showAdminLocation();
             }  

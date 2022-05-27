@@ -28,12 +28,12 @@ switch($params[0]){
     case 'verify-administrador':
         $loginAdministrativoController->verify();
         break;
-    case 'registro-administrador':
+    /*case 'registro-administrador':
         $loginAdministrativoController->register();
         break;
     case 'verifyregister':
         $loginAdministrativoController->verifyRegister();
-        break;   
+        break; */  
     case 'admin':
         $adminController->mainAdmin();   
         break;
