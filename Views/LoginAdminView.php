@@ -1,6 +1,6 @@
 <?php
 include_once('libs\smarty-3.1.39\libs\Smarty.class.php');
-class LoginView{
+class LoginAdminView{
     private $smarty;
 
     function __construct(){
@@ -13,8 +13,10 @@ class LoginView{
         $this->smarty->assign('error', $error);
 
         $this->smarty->display('./Templates/login.tpl');
-    
+         
+    }
 
-     
+    function showAdminLocation(){     
+        header("Location: ".BASE_URL."admin");
     }
 }

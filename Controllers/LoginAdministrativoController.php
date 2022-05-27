@@ -1,17 +1,16 @@
 <?php
 require_once('./Models/AdminModel.php');
-require_once('./Models/UserModel.php');
-require_once('./Views/LoginView.php');
+require_once('./Views/LoginAdminView.php');
 require_once('./Helpers/SessionHelper.php');
 
 class LoginAdministrativoController{
-    private $loginView;
+    private $loginAdminView;
     private $userModel;
     private $sessionHelper;
 
     function __construct(){
-        $this->userModel = new UserModel();
-        $this->loginView = new LoginView();
+        $this->adminModel = new AdminModel();
+        $this->loginAdminView = new LoginAdminView();
         $this->sessionHelper = new SessionHelper();
     }
 
@@ -19,57 +18,59 @@ class LoginAdministrativoController{
 
     function login(){
         //$this->sessionHelper->checkLoggedIn();
-        $this->loginView->showLogin();
+        $this->loginAdminView->showLogin();
         //$this->sessionHelper->isLogged()
     }
 
     function verify(){
-        if (!empty($_POST['DNI'])){
-            $dni = $_POST['DNI'];
+        if (!empty($_POST['usuario']) && !empty($_POST['pass'])){
+            $usuario = $_POST['usuario'];
+            $pass = $_POST['pass'];
      
 
-            $user = $this->userModel->getUser($dni);
-            if ($user){
-                $this->sessionHelper->login($user);             
-                $this->loginView->showHomeLocation();
+            $usuarioAdministrativo = $this->adminModel->getUser($usuario);
+            if ($usuarioAdministrativo && password_verify($pass, ($usuarioAdministrativo->pass))){
+                $this->sessionHelper->login($usuarioAdministrativo);             
+                $this->loginAdminView->showAdminLocation();
             }  
             else{
-                $this->loginView->showLogin('DNI inexistente');
+                $this->loginAdminView->showLogin('Usuario inexistente');
             }  
         }
         else {
-            $this->loginView->showLogin('Ingrese su DNI');
+            $this->loginAdminView->showLogin('Complete el campo Usuario');
         }
     }
 
     // function register(){
+
     //     $this->sessionHelper->checkLoggedIn();
-    //     $this->loginView->showRegister($this->sessionHelper->isLogged());
+    //     $this->loginAdminView->showRegister($this->sessionHelper->isLogged());
         
     // }
 
-    //    function verifyRegister(){
-    //         if (!empty($_POST['usuario']) && !empty($_POST['pass']) && !empty($_POST['mail'])){
+    // function verifyRegister(){
+    //     if (!empty($_POST['usuario']) && !empty($_POST['pass']) && !empty($_POST['mail'])){
 
-    //             $usuario = $_POST['usuario'];
-    //             $pass = password_hash($_POST['pass'], PASSWORD_BCRYPT);
-    //             $mail = $_POST['mail'];
+    //         $usuario = $_POST['usuario'];
+    //         $pass = password_hash($_POST['pass'], PASSWORD_BCRYPT);
+    //         $mail = $_POST['mail'];
 
-    //             $user = $this->userModel->getUser($usuario);
-    //             $session = $this->sessionHelper->isLogged();
-                
-    //             if ($user){
-    //                 $this->loginView->showRegister($session,'El usuario ya esta en uso');
-    //             }
-    //             else{
-    //                 $this->userModel->newUser($usuario, $mail, $pass);
-    //                 $this->verify();
-    //               //  $this->loginView->showLogin($session,'Cuenta creada! Logea');
-    //             }
-    //         }else{
-    //             $this->loginView->showRegister($this->sessionHelper->isLogged(),'Camplos incompletos');
-        
+    //         $user = $this->userModel->getUser($usuario);
+    //         $session = $this->sessionHelper->isLogged();
+            
+    //         if ($user){
+    //             $this->loginAdminView->showRegister($session,'El usuario ya esta en uso');
     //         }
-    //     } 
+    //         else{
+    //             $this->userModel->newUser($usuario, $mail, $pass);
+    //             $this->verify();
+    //             //  $this->loginAdminView->showLogin($session,'Cuenta creada! Logea');
+    //         }
+    //     }else{
+    //         $this->loginAdminView->showRegister($this->sessionHelper->isLogged(),'Camplos incompletos');
+    
+    //     }
+    // } 
 
 }

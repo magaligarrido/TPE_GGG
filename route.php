@@ -1,6 +1,6 @@
 <?php
 //DEFINIR BD
-// define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
+define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
 require_once('Controllers/LoginAdministrativoController.php');
 require_once('Controllers/AdminController.php');
@@ -25,10 +25,10 @@ switch($params[0]){
     case 'Logout':
         $loginAdministrativoController->logout();
         break;
-    case 'verify':
+    case 'verify-administrador':
         $loginAdministrativoController->verify();
         break;
-    case 'registro':
+    case 'registro-administrador':
         $loginAdministrativoController->register();
         break;
     case 'verifyregister':
