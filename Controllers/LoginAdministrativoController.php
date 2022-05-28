@@ -23,23 +23,22 @@ class LoginAdministrativoController{
     }
 
     function verify(){
-        if (!empty($_POST['usuario']) && !empty($_POST['pass']) && !empty($_POST['institucion'])){
+        if (!empty($_POST['usuario']) && !empty($_POST['pass'])){
             $usuario = $_POST['usuario'];
             $pass = $_POST['pass'];
-            $inst = $_POST['institucion'];
             
-
+            
             $usuarioAdministrativo = $this->adminModel->getUser($usuario);
-            if ($usuarioAdministrativo && password_verify($pass, ($usuarioAdministrativo->pass)) && $usuarioAdministrativo->id_institucion == $inst){
+            if ($usuarioAdministrativo && password_verify($pass, ($usuarioAdministrativo->pass))){
                 $this->sessionHelper->login($usuarioAdministrativo);             
                 $this->loginAdminView->showAdminLocation();
             }  
             else{
-                $this->loginAdminView->showLogin('Usuario inexistente');
+                $this->loginAdminView->showLoginAdmin('Usuario inexistente');
             }  
         }
         else {
-            $this->loginAdminView->showLogin('Complete el campo Usuario');
+            $this->loginAdminView->showLoginAdmin('Complete el campo Usuario');
         }
     }
 
