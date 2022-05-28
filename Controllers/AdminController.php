@@ -27,9 +27,20 @@ class AdminController{
     
     public function crear_secretaria(){
         $p=password_hash($_POST["password"], PASSWORD_BCRYPT);
-        $this->adminModel->add_s($_POST["usuario"], $p);
-        //---------------------------------------------falta mostrar si se agrego
+        $this->adminModel->add_s($_POST["usuario"], $p, $_POST["nombre"]);
         $this->adminView->showHome();
 
+    }
+    
+    public function relacionar(){
+        $m = $this->adminModel->getMedico($_POST["medico"]);
+        $s = $this->adminModel->getSecretaria($_POST["secretaria"]);
+    
+        if($m && $s){
+            $this->adminModel->relacionar($m->nombre, $s->id_secretaria);
+            $this->adminView->showHome("Relacion creada");
+        }
+        $this->adminView->showHome("Hubo un error");
+       
     }
 }

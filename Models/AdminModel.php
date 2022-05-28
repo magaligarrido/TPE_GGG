@@ -20,30 +20,30 @@ class AdminModel{
 
    }
 
-   function add_s($u, $p){
-    $consulta = $this->db->prepare('INSERT INTO secretaria(`usuario`, `password`) VALUES (?,?)');
-    $consulta->execute(array($u, $p));
+   function add_s($u, $p, $n){
+    $consulta = $this->db->prepare('INSERT INTO secretaria(`usuario`, `password`, `nombre`) VALUES (?,?,?)');
+    $consulta->execute(array($u, $p, $n));
     
    }
 
-   /* function getUsers(){
-        $consulta = $this->db->prepare('SELECT * FROM usuarios');
-        $consulta->execute();
-        $users = $consulta->fetchAll(PDO :: FETCH_OBJ);
-        return $users;
-    }*/
+   function getMedico($m){
+    $consulta = $this->db->prepare('SELECT * FROM medico WHERE nombre = ?');
+    $consulta->execute(array($m));
+    $m = $consulta->fetch(PDO::FETCH_OBJ);
+    return $m;
+   }
 
-    //SUPONEMOS QUE EL ALTA DE UN USUARIO ADMINISTRADOR LO HACE QUIEN BRINDA EL SERVICIO DE TURNO FACIL
-    //TANTO EL ALTA COMO LA BAJA DE ADMINISTRADORES SE DEBERIA REALIZAR DIRECTAMENTE A LA BASE DE DATOS
+   function getSecretaria($s){
+    $consulta = $this->db->prepare('SELECT * FROM secretaria WHERE nombre = ?');
+    $consulta->execute(array($s));
+    $s = $consulta->fetch(PDO::FETCH_OBJ);
+    return $s;
+   }
 
-    // function newUser($dni, $nombre,$apellido,$direccion,$telefono,$email,$obraSocial,$numeroAfiliado){
-    //     $consulta = $this->db->prepare('INSERT INTO usuarios (dni,nombre,apellido,direccion,telefono,email,obraSocial,numeroAfiliado) VALUES (?,?,?,?,?,?,?,?)');
-    //     $consulta->execute([$dni, $nombre,$apellido,$direccion,$telefono,$email,$obraSocial,$numeroAfiliado]);
-    // }
+   function relacionar($m, $s){
+       $consulta = $this->db->prepare('UPDATE medico SET `secretaria`=? WHERE `nombre` = ?');
+       $c=$consulta->execute(array($s, $m));
+    }
 
-    // function deleteUsuario($dni){
-    //     $consulta = $this->db->prepare("DELETE FROM usuarios WHERE dni=?");
-    //     $consulta->execute(array($dni));
-    // }
 
 }

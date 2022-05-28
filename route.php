@@ -19,6 +19,9 @@ switch($params[0]){
     case 'home':
         $loginAdministrativoController->login();
         break;
+    case 'relacionar':
+        $adminController->relacionar();
+        break;
     case 'crear_medico':
         $adminController->crear_medico();
         break;

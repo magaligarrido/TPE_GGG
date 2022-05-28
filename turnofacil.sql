@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-05-2022 a las 11:53:09
+-- Tiempo de generación: 28-05-2022 a las 19:09:14
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.2
 
@@ -64,8 +64,7 @@ CREATE TABLE `medico` (
 --
 
 INSERT INTO `medico` (`id_medico`, `usuario`, `password`, `nombre`, `apellido`, `id_especialidad`, `secretaria`) VALUES
-(3, 'juan12', '$2y$10$t94tLK2jvVHhBn7hG6x0ve/VcLORFcL.h8Lbfur5G.k4nEwDS1Xk.', 'juan', 'perez', 4, NULL),
-(5, 'juan12', '$2y$10$PU0REQYOg0IUXht45MMa/uDp4Xc/aQVS22sS/7HR0Brh9PoPR7LOe', 'juan', 'perez', 4, NULL);
+(3, 'juan12', '$2y$10$t94tLK2jvVHhBn7hG6x0ve/VcLORFcL.h8Lbfur5G.k4nEwDS1Xk.', 'juan', 'perez', 4, 9);
 
 -- --------------------------------------------------------
 
@@ -94,15 +93,18 @@ CREATE TABLE `paciente` (
 CREATE TABLE `secretaria` (
   `id_secretaria` int(10) NOT NULL,
   `usuario` varchar(20) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `password` varchar(100) NOT NULL,
+  `nombre` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `secretaria`
 --
 
-INSERT INTO `secretaria` (`id_secretaria`, `usuario`, `password`) VALUES
-(1, 'xx', '$2y$10$yVtC5VCcya1dtqI3lbgPNuQfC/ZYaC0AQkQ.Zpiy2ncOTWtLDyvQ2');
+INSERT INTO `secretaria` (`id_secretaria`, `usuario`, `password`, `nombre`) VALUES
+(5, 'pepa', '$2y$10$WvGu9lNra.2i/yCKgspJr.llV6sfFzTxlsn2mzH63ap3AHtpAbVNm', ''),
+(8, 'user', '$2y$10$Tih6IRAjUSxW9cO.h5k5qOUQTxsDoupw6NdzdBOqseZh.wU1QpPwK', 'pepa'),
+(9, 'cucu', '$2y$10$hFSWMH008aOXqs6YMcDV6uKAW2ihss61ZNcgERCFz25KOvELsm1fO', 'sara');
 
 --
 -- Índices para tablas volcadas
@@ -153,7 +155,7 @@ ALTER TABLE `paciente`
 -- AUTO_INCREMENT de la tabla `secretaria`
 --
 ALTER TABLE `secretaria`
-  MODIFY `id_secretaria` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_secretaria` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Restricciones para tablas volcadas
