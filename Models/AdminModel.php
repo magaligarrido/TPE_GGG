@@ -14,6 +14,18 @@ class AdminModel{
     return $user;
    }
 
+   function add_m($u, $p, $n, $a, $id){
+    $consulta = $this->db->prepare('INSERT INTO medico(`usuario`, `password`, `nombre`, `apellido`, `id_especialidad`) VALUES (?,?,?,?,?)');
+    $consulta->execute(array($u, $p, $n, $a, $id));
+
+   }
+
+   function add_s($u, $p){
+    $consulta = $this->db->prepare('INSERT INTO secretaria(`usuario`, `password`) VALUES (?,?)');
+    $consulta->execute(array($u, $p));
+    
+   }
+
    /* function getUsers(){
         $consulta = $this->db->prepare('SELECT * FROM usuarios');
         $consulta->execute();
