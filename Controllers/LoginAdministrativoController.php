@@ -31,6 +31,7 @@ class LoginAdministrativoController{
             $usuarioAdministrativo = $this->adminModel->getUser($usuario);
             if ($usuarioAdministrativo && password_verify($pass, ($usuarioAdministrativo->pass))){
                 $this->sessionHelper->login($usuarioAdministrativo);             
+                $this->sessionHelper->login($usuarioAdministrativo);             
                 $this->loginAdminView->showAdminLocation();
             }  
             else{

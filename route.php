@@ -28,6 +28,9 @@ switch($params[0]){
     case 'crear_secretaria':
         $adminController->crear_secretaria();
         break;
+    case 'crear_especialidad':
+        $adminController->crear_especialidad();
+        break;
     case 'loginAdministrativo':
         $loginAdministrativoController->login();
         break;

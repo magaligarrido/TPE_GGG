@@ -6,7 +6,8 @@ class SessionHelper{
 
     function login($user){
         session_start();
-        $_SESSION["DNI"] = $user->usuario;                
+        $_SESSION["INSITUCION"] = $user->id_institucion;                
+        $_SESSION["USUARIO"] = $user->usuario;                
         //$_SESSION["rol"] = $user->rol;
     }
 
@@ -45,11 +46,11 @@ class SessionHelper{
         }
         
     }
-    function showRol(){
+    function showInstitucion(){
         if (session_status() != PHP_SESSION_ACTIVE)
             session_start();
-        if(isset($_SESSION["DNI"])){
-            return; //$_SESSION["rol"];
+        if(isset($_SESSION["INSITUCION"])){
+            return $_SESSION["INSITUCION"];
         }     
         return;
         
