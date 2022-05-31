@@ -34,7 +34,7 @@ class AdminModel{
    }
 
    function getMedico($m){
-    $consulta = $this->db->prepare('SELECT * FROM medico WHERE nombre = ?');
+    $consulta = $this->db->prepare('SELECT * FROM medico WHERE id_medico = ?');
     $consulta->execute(array($m));
     $m = $consulta->fetch(PDO::FETCH_OBJ);
     return $m;
@@ -55,7 +55,7 @@ class AdminModel{
    }
 
    function getSecretaria($m){
-    $consulta = $this->db->prepare('SELECT * FROM medico WHERE nombre = ?');
+    $consulta = $this->db->prepare('SELECT * FROM secretaria WHERE id_secretaria = ?');
     $consulta->execute(array($m));
     $m = $consulta->fetch(PDO::FETCH_OBJ);
     return $m;
@@ -69,7 +69,7 @@ class AdminModel{
    }
 
    function relacionar($m, $s){
-       $consulta = $this->db->prepare('UPDATE medico SET `secretaria`=? WHERE `nombre` = ?');
+       $consulta = $this->db->prepare('UPDATE medico SET `id_secretaria`=? WHERE `id_medico` = ?');
        $c=$consulta->execute(array($s, $m));
     }
 

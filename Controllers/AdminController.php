@@ -10,43 +10,44 @@ class AdminController{
     private $secretarias;
     private $medicos;
     private $especialidades;
+    private $institucion;
 
     function __construct(){
         $this->adminModel = new AdminModel();
         $this->adminView = new AdminView();
         $this->sessionHelper = new SessionHelper();
 
-        $institucion = $this->sessionHelper->showInstitucion();
-        $this->medicos = $this->adminModel->getMedicos($institucion);
-        $this->secretarias = $this->adminModel->getSecretarias($institucion);
+        $this->institucion = $this->sessionHelper->showInstitucion();
+        $this->medicos = $this->adminModel->getMedicos($this->institucion);
+        $this->secretarias = $this->adminModel->getSecretarias($this->institucion);
         $this->especialidades = $this->adminModel->getEspecialidades();
 
     }
 
     public function mainAdmin(){
-       $this->adminView->showHome($this->medicos, $this->secretarias ,$this->especialidades);
+       $this->adminView->showHome($this->adminModel->getMedicos($this->institucion), $this->adminModel->getSecretarias($this->institucion),$this->adminModel->getEspecialidades());
     }
 
     public function crear_medico(){
         $p=password_hash($_POST["password"], PASSWORD_BCRYPT);
         $this->adminModel->add_m($this->sessionHelper->showInstitucion(),$_POST["usuario"], $p, $_POST["nombre"],$_POST["apellido"], $_POST["id_especialidad"]);
         //----------------------------------------------falta mostrar si se agrego
-        $this->adminView->showHome($this->medicos, $this->secretarias ,$this->especialidades);
+        $this->adminView->showHome($this->adminModel->getMedicos($this->institucion), $this->adminModel->getSecretarias($this->institucion),$this->adminModel->getEspecialidades());
 
     }
     
     public function crear_secretaria(){
         $p=password_hash($_POST["password"], PASSWORD_BCRYPT);
         $this->adminModel->add_s($this->sessionHelper->showInstitucion(),$_POST["usuario"], $p, $_POST["nombre"]);
-        $this->adminView->showHome($this->medicos, $this->secretarias ,$this->especialidades);
+        $this->adminView->showHome($this->adminModel->getMedicos($this->institucion), $this->adminModel->getSecretarias($this->institucion),$this->adminModel->getEspecialidades());
     }
 
     public function crear_especialidad(){
         if(isset($_POST["especialidad"])){
             $this->adminModel->add_e($_POST["especialidad"]);
-            $this->adminView->showHome($this->medicos, $this->secretarias ,$this->especialidades);
+            $this->adminView->showHome($this->adminModel->getMedicos($this->institucion), $this->adminModel->getSecretarias($this->institucion),$this->adminModel->getEspecialidades());
         }else{
-            $this->adminView->showHome($this->medicos, $this->secretarias ,$this->especialidades, "Ingrese nuevamente la especialidad");
+            $this->adminView->showHome($this->adminModel->getMedicos($this->institucion), $this->adminModel->getSecretarias($this->institucion) ,$this->adminModel->getEspecialidades(), "Ingrese nuevamente la especialidad");
         }
     }
     
@@ -55,10 +56,10 @@ class AdminController{
         $s = $this->adminModel->getSecretaria($_POST["id_secretaria"]);
     
         if($m && $s){
-            $this->adminModel->relacionar($m->nombre, $s->id_secretaria);
-            $this->adminView->showHome($this->medicos, $this->secretarias ,$this->especialidades, "Relacion Creada");
+            $this->adminModel->relacionar($m->id_medico, $s->id_secretaria);
+            $this->adminView->showHome($this->adminModel->getMedicos($this->institucion), $this->adminModel->getSecretarias($this->institucion),$this->adminModel->getEspecialidades(), "Relacion Creada");
         }
-        $this->adminView->showHome($this->medicos, $this->secretarias ,$this->especialidades,"Hubo un error");
+        $this->adminView->showHome($this->adminModel->getMedicos($this->institucion), $this->adminModel->getSecretarias($this->institucion), $this->especialidades,"Hubo un error");
        
     }
 }
