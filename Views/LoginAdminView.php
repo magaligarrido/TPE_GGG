@@ -9,7 +9,11 @@ class LoginAdminView{
 
     function showLoginAdmin( $error=""){
       
+
         $this->smarty->assign('titulo', 'Log In Admin');
+
+        $this->smarty->assign('titulo', 'Entrar como responsable IT');
+
         $this->smarty->assign('error', $error);
 
         $this->smarty->display('./Templates/login.tpl');
