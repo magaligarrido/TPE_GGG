@@ -58,8 +58,8 @@ class AdminController{
         if($m && $s){
             $this->adminModel->relacionar($m->id_medico, $s->id_secretaria);
             $this->adminView->showHome($this->adminModel->getMedicos($this->institucion), $this->adminModel->getSecretarias($this->institucion),$this->adminModel->getEspecialidades(), "Relacion Creada");
-        }
+        }else{
         $this->adminView->showHome($this->adminModel->getMedicos($this->institucion), $this->adminModel->getSecretarias($this->institucion), $this->especialidades,"Hubo un error");
-       
+        }
     }
 }
