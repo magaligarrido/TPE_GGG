@@ -7,7 +7,7 @@ class LoginAdminView{
         $this->smarty = new Smarty();
     }
 
-    function showLoginAdmin( $error=""){
+    public function showLoginAdmin( $error=""){
       
         $this->smarty->assign('titulo', 'Log In Admin');
         $this->smarty->assign('error', $error);
@@ -16,7 +16,7 @@ class LoginAdminView{
          
     }
 
-    function showAdminLocation(){     
+    public function showAdminLocation(){     
         header("Location: ".BASE_URL."admin");
     }
 }

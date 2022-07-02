@@ -7,7 +7,7 @@ class AdminView{
         $this->smarty = new Smarty();
     }
 
-    function showHome($medicos, $secretarias ,$especialidades, $error=""){
+    public function showHome($medicos, $secretarias ,$especialidades, $error=""){
         $this->smarty->assign('medicos', $medicos);
         $this->smarty->assign('secretarias', $secretarias);
         $this->smarty->assign('especialidades', $especialidades);

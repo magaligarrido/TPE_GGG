@@ -24,8 +24,9 @@ class AdminController{
 
     }
 
-    public function mainAdmin(){
-       $this->adminView->showHome($this->adminModel->getMedicos($this->institucion), $this->adminModel->getSecretarias($this->institucion),$this->adminModel->getEspecialidades());
+    public function mainAdmin(){ 
+        $this->sessionHelper->checkLoggedIn();
+        $this->adminView->showHome($this->adminModel->getMedicos($this->institucion), $this->adminModel->getSecretarias($this->institucion),$this->adminModel->getEspecialidades());
     }
 
     public function crear_medico(){
