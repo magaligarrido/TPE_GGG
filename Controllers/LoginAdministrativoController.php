@@ -22,6 +22,12 @@ class LoginAdministrativoController{
         //$this->sessionHelper->isLogged()
     }
 
+    function logout(){
+        $this->sessionHelper->logout();
+        $this->loginAdminView->showLoginAdmin();
+
+    }
+
     function verify(){
         if (!empty($_POST['usuario']) && !empty($_POST['pass'])){
             $usuario = $_POST['usuario'];
@@ -30,8 +36,7 @@ class LoginAdministrativoController{
             
             $usuarioAdministrativo = $this->adminModel->getUser($usuario);
             if ($usuarioAdministrativo && password_verify($pass, ($usuarioAdministrativo->pass))){
-                $this->sessionHelper->login($usuarioAdministrativo);             
-                $this->sessionHelper->login($usuarioAdministrativo);             
+                $this->sessionHelper->login($usuarioAdministrativo->id_institucion,$usuarioAdministrativo->usuario);          
                 $this->loginAdminView->showAdminLocation();
             }  
             else{

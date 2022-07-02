@@ -7,6 +7,7 @@
                 <input type="password" name="pass" placeholder="Password">
                 <input class="btn" style="width:{'50%'}" type="submit" value="Ingresar">
             </form>
+            <a href="loginPaciente">Ingresar como paciente</a>
         </div>
             
     <h4>{$error}</h4>

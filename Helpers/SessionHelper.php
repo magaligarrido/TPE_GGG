@@ -4,10 +4,11 @@ class SessionHelper{
     }
 
 
-    function login($user){
-        session_start();
-        $_SESSION["INSITUCION"] = $user->id_institucion;                
-        $_SESSION["USUARIO"] = $user->usuario;                
+    function login($id_institucion,$usuario){
+        if (session_status() != PHP_SESSION_ACTIVE)   
+            session_start();
+        $_SESSION["INSITUCION"] = $id_institucion;                
+        $_SESSION["USUARIO"] = $usuario;                
         //$_SESSION["rol"] = $user->rol;
     }
 
@@ -15,6 +16,12 @@ class SessionHelper{
         if (session_status() != PHP_SESSION_ACTIVE)
             session_start();
         session_destroy();
+    }
+
+    function isLogged(){
+        if (session_status() != PHP_SESSION_ACTIVE)
+           return false;
+        return true;
     }
 
     function checkLoggedIn() {
