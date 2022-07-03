@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-05-2022 a las 22:29:35
--- Versión del servidor: 10.4.19-MariaDB
--- Versión de PHP: 8.0.7
+-- Tiempo de generación: 03-07-2022 a las 14:37:59
+-- Versión del servidor: 10.1.38-MariaDB
+-- Versión de PHP: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -38,7 +39,12 @@ CREATE TABLE `especialidad` (
 
 INSERT INTO `especialidad` (`id_especialidad`, `especialidad`) VALUES
 (1, 'Traumatologia'),
-(2, 'Traumatologia');
+(3, 'Pediatria'),
+(5, 'cardiologia'),
+(6, 'wer'),
+(7, 'astronauta'),
+(8, 'c'),
+(9, 'sesa');
 
 -- --------------------------------------------------------
 
@@ -83,9 +89,26 @@ CREATE TABLE `medico` (
 --
 
 INSERT INTO `medico` (`id_medico`, `id_institucion`, `usuario`, `password`, `nombre`, `apellido`, `id_especialidad`, `id_secretaria`) VALUES
-(7, 0, 'user1', '$2y$10$R6uVDcEA8HP4ycMduRrSlOpuFIPPFvIBSAX0NmZYL8HMnCDoD8K06', 'testtraumato', 'test', 1, NULL),
-(8, 0, '1', '$2y$10$0XQCIEcyTvkqvKulOvK9LOjOZ8KhPcOhFICHYfgLPjMI.RAAKCej6', '1', '12', 1, NULL),
-(9, 0, '1', '$2y$10$prHZqi/GN3hcZYAFjiZ79uCmJzlNvlbZ9E/ySk9AOK.kg3Rkrunl2', '1', '1', 1, NULL);
+(10, 123, 'oscar12', '$2y$10$CQSqfn1Sy3njXyGhnQyht.dlznuPlfD4bNwlrIpTiYJ2KySjiRJTW', 'oscar', 'frace', 1, 26),
+(11, 123, 'juan44', '$2y$10$1xhzJBrvvR3REeqN7C3qHOz.r34io8sC5RMrmOzuwQAKEFsSyf8X2', 'juan', 'perez', 1, 17),
+(12, 123, 'fgh', '$2y$10$tN6PQKhHi.DhT6r4u/yEDOAPDUjFlv2lXEsCmOdFEkcfiUSVXdyGG', 'fg55', 'rdr', 1, 17),
+(13, 123, 'kdsfjlk', '$2y$10$FFooG1Jaxkab.jhfPua3j.UATroaoovSPDqVDEoSFu8A9Mofc0aFK', 'hkjh', 'kjhmg', 1, NULL),
+(14, 123, 'popo', '$2y$10$s.lsJAU7Ebfx82Q0anjm4eeIGrPYCuGgWQdjpmQuzBGd1lw7ww8tq', 'ugy', 'uyg', 1, NULL),
+(15, 123, 'farnco ', '$2y$10$pAt.obxtoErZ/PBHaxsyU.PPN9dkmUb8BnBW0nKkot4bFDQKT6LsK', 'gg', 'dd', 1, NULL),
+(16, 123, 'ooo', '$2y$10$yFlRHNI2IwGEfizXhclNO.XxwsOLi60XkTOO.N3OX9tR.XnqsiCKm', 'ij', 'ij', 1, NULL),
+(17, 123, 'ooo', '$2y$10$c4ac46W7knnNX0h6eUh4fOzTrxSXpVp5baRst59iltfPs3rHNoN5G', 'ooo', 'ooo', 1, 19),
+(18, 123, 'a', '$2y$10$JQjaOpqyTSe5.jzikbdLwub4bZGBQUULjRKvCWEd3kcz.zM.lcOii', 'aa', 'aaa', 3, NULL),
+(19, 123, 'a', '$2y$10$bfufXpG6dsyqCabp2JcJiOIXMj3YJ9BT0bdLHF3astRQr14Mea7Bq', 'aa', 'aaa', 3, NULL),
+(20, 123, 'iuh', '$2y$10$MlsZMxBhUG1GLRdLHO0M2ufkb/.19OLEhcKwW/qUm3mKskjPt3gSi', 'iuh', 'iuh', 1, 21),
+(21, 123, 'jorge', '$2y$10$b7PjCbX.jB01A0m/F6g5Puv142xszhowsbJHBJYl.0T4B0eCDwrue', 'ewe', 'ee', 1, NULL),
+(22, 123, 'jorge', '$2y$10$1mMKoRMpT3d/ahYjNBN0Y.K3TTZAGYkqHEwdG9GidTmfGHgG41lLC', 'ewe', 'ee', 1, NULL),
+(23, 123, 'jprge', '$2y$10$GLRYDHRl18rCqSBbH3FPeuRKd0OYLoWj.If28Ssc6YMzMYKfP5Lpe', 'ojno', 'ojno', 3, 17),
+(24, 123, 'sosa', '$2y$10$it.Ez8bsgl9Q3W64FsUsFun7xmw8CGUTjgBdAlSJVqPIGqL.G6YNW', 'kjn', 'kjn', 1, NULL),
+(25, 123, 'sosinnn', '$2y$10$bUkCFQ8AHSB76uZpF/DS3u8aNKN8NLeLro9p9smO7Nj5M3uyH7zcS', 'jnjn', 'njn', 1, NULL),
+(26, 123, 'zz', '$2y$10$LHZcau7fY7Srztc2lgRWoOPuveiTWsGVu2wUh7KNS6N9m3rqBL0Lq', 'z', 'zz', 3, NULL),
+(27, 123, 'tr', '$2y$10$6T8EoIoW8iI.3Bh7yRjtA.SZokJmekOw7fVXrscoIjwJ0Td69evUm', 'tr', 'tr', 3, NULL),
+(28, 123, 'pepepe', '$2y$10$.AUwkINfJIyUfxLz9B5kaeImzW7IOLvPYU6PMXv9VVLCBFRiPa/kC', 'uyg', 'uyg', 5, NULL),
+(29, 123, 'qw', '$2y$10$b.4POG8LdBYagtw/54sNl.zf8zt/WfZAAVMA0eTw6kMts7QvjXroO', 'qew', 'qew', 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -106,6 +129,13 @@ CREATE TABLE `paciente` (
   `numero_afiliado` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `paciente`
+--
+
+INSERT INTO `paciente` (`id_paciente`, `id_institucion`, `dni`, `nombre`, `apellido`, `direccion`, `telefono`, `email`, `obra_social`, `numero_afiliado`) VALUES
+(1, 0, 1, 'franco', 'girolami', 'pepa', 234, 'ff', 'a', 11);
+
 -- --------------------------------------------------------
 
 --
@@ -125,12 +155,51 @@ CREATE TABLE `secretaria` (
 --
 
 INSERT INTO `secretaria` (`id_secretaria`, `id_institucion`, `usuario`, `password`, `nombre`) VALUES
-(5, 0, 'pepa', '$2y$10$WvGu9lNra.2i/yCKgspJr.llV6sfFzTxlsn2mzH63ap3AHtpAbVNm', ''),
-(8, 0, 'user', '$2y$10$Tih6IRAjUSxW9cO.h5k5qOUQTxsDoupw6NdzdBOqseZh.wU1QpPwK', 'pepa'),
-(9, 0, 'cucu', '$2y$10$hFSWMH008aOXqs6YMcDV6uKAW2ihss61ZNcgERCFz25KOvELsm1fO', 'sara'),
-(10, 0, 'S1', '$2y$10$5qCkNT5ebcfXUMD8hHUBlOu/oahSDnvSwcAfANoI1G9wkgyig2Pme', 'Secre1'),
-(11, 0, 'S2', '$2y$10$X5jn1BX4J2uXRdKifhRnIeyWMjy8p3N5EWganwSKaDmN6h4vUaBXa', 'Secre2'),
-(12, 0, 'S2', '$2y$10$qBttbRrJ7UFy23N3p28oy.jMIurtCHbTBxPt6KlyYtSJgsL8tgHaS', 'Secre2');
+(13, 123, 'sara333', '$2y$10$diO9NTWURdQ29HuIpur2CuhYunEeo0OLFxm0rvSbzo/YJjA7yCSei', 'sara'),
+(16, 123, 'pepa', '$2y$10$lwfjQkt5dAQiHG7KFRk9ZeDIexBs/MhgrccLJMNmnJ2gv3B4N.lgG', 'pepona'),
+(17, 123, 'uh23', '$2y$10$fZFL6ynxRRQnsSof.Rrcce3FQIB9oLgoNDPH3XoyJR.lU4mv1hXHy', '3e3e3'),
+(18, 123, 'uuu', '$2y$10$jIMr6s9A073o8hHmRESCWOLnLe7.u5FaMY4K3PELlpdDOwTIrMvxy', 'uh'),
+(19, 123, 'uuu', '$2y$10$DixOAArir0E/oFVLnEAQ9.TUymyla.SQk09/LnvrJM8gdvZSvf0se', 'uuu'),
+(20, 123, 'ert', '$2y$10$z1wxdPGyJOlBpOA1knn66.duhLNZ.L2MiAlzk7Ch2nSfqHl3lY70u', 'er3tt'),
+(21, 123, 'agustina', '$2y$10$/2MV03/OlFJEgko59wHSXuUfPh2h.GWH/odyHi/PwspUL5YHV4.kC', 'defwef'),
+(22, 123, 'sias', '$2y$10$mlZqRcJWNJQD7UVPWlJyJumHFbxgjQvstZZOS4PNR5SzyTHtgXCAy', 'sias'),
+(23, 123, 'sias', '$2y$10$1U.amJmepaJJuZtqvGoON.CeQ4Yy7/rfP1cjyUd4PUCWEA7bAb/RO', 'sias'),
+(24, 123, 'ww', '$2y$10$FexR.kk5TWUoC1lLySsOuOcdwQ/KKfyaeteMS6azrAF.TJcBioHoq', 'ww'),
+(25, 123, 'sesar', '$2y$10$0NjZzeeVLW4iB7AtKLDv3.lgCoxVMldcaq9UL.1rixnU43XwPo7ra', 'yg'),
+(26, 123, 'sesar', '$2y$10$c1CuMRFrBuHYfLuTC.n1au7BhFYToz0GWHILh6k207FEZE0KYXXo2', 'yg');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `turno`
+--
+
+CREATE TABLE `turno` (
+  `id_turno` int(11) NOT NULL,
+  `id_paciente` int(10) DEFAULT NULL,
+  `id_medico` int(10) NOT NULL,
+  `fecha` date NOT NULL,
+  `hora` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `turno`
+--
+
+INSERT INTO `turno` (`id_turno`, `id_paciente`, `id_medico`, `fecha`, `hora`) VALUES
+(1, NULL, 10, '2022-08-12', '11:00:00'),
+(2, NULL, 12, '2022-08-22', '14:00:00'),
+(3, NULL, 10, '2022-05-03', '14:00:00'),
+(4, NULL, 10, '2022-05-23', '17:00:00'),
+(5, NULL, 10, '2022-07-13', '10:00:00'),
+(6, NULL, 11, '2022-08-23', '13:00:00'),
+(7, NULL, 12, '2022-07-01', '09:00:00'),
+(8, NULL, 15, '2022-08-23', '13:00:00'),
+(9, NULL, 14, '2022-07-01', '09:00:00'),
+(10, NULL, 15, '2022-08-23', '13:00:00'),
+(11, NULL, 20, '2022-07-01', '09:00:00'),
+(12, NULL, 20, '2022-04-23', '13:00:00'),
+(13, NULL, 18, '2022-02-01', '12:00:00');
 
 --
 -- Índices para tablas volcadas
@@ -172,6 +241,13 @@ ALTER TABLE `secretaria`
   ADD KEY `id_institucion` (`id_institucion`);
 
 --
+-- Indices de la tabla `turno`
+--
+ALTER TABLE `turno`
+  ADD PRIMARY KEY (`id_turno`),
+  ADD KEY `id_medico` (`id_medico`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -179,25 +255,31 @@ ALTER TABLE `secretaria`
 -- AUTO_INCREMENT de la tabla `especialidad`
 --
 ALTER TABLE `especialidad`
-  MODIFY `id_especialidad` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_especialidad` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `medico`
 --
 ALTER TABLE `medico`
-  MODIFY `id_medico` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_medico` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `paciente`
 --
 ALTER TABLE `paciente`
-  MODIFY `id_paciente` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_paciente` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `secretaria`
 --
 ALTER TABLE `secretaria`
-  MODIFY `id_secretaria` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_secretaria` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT de la tabla `turno`
+--
+ALTER TABLE `turno`
+  MODIFY `id_turno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Restricciones para tablas volcadas
@@ -222,6 +304,12 @@ ALTER TABLE `paciente`
 --
 ALTER TABLE `secretaria`
   ADD CONSTRAINT `secretaria_ibfk_1` FOREIGN KEY (`id_institucion`) REFERENCES `institucion` (`id_institucion`);
+
+--
+-- Filtros para la tabla `turno`
+--
+ALTER TABLE `turno`
+  ADD CONSTRAINT `turno_ibfk_1` FOREIGN KEY (`id_medico`) REFERENCES `medico` (`id_medico`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
