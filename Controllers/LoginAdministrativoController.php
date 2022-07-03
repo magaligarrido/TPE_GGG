@@ -14,7 +14,11 @@ class LoginAdministrativoController{
         $this->sessionHelper = new SessionHelper();
     }
 
- 
+    public function logout(){
+        $this->sessionHelper->logout();
+        $this->loginAdminView->showLoginAdmin();
+
+    }
 
     public function login(){
         $this->loginAdminView->showLoginAdmin();
@@ -27,9 +31,9 @@ class LoginAdministrativoController{
             $pass = $_POST['pass'];
             
             
-            $usuarioAdministrativo = $this->userModel->getUser($usuario);
+            $usuarioAdministrativo = $this->userModel->getUserADMIN($usuario);
             if ($usuarioAdministrativo && password_verify($pass, ($usuarioAdministrativo->pass))){
-                $this->sessionHelper->login($usuarioAdministrativo);           
+                $this->sessionHelper->login($usuarioAdministrativo->id_institucion,$usuarioAdministrativo->usuario);              
                 $this->loginAdminView->showAdminLocation();
             }  
             else{
