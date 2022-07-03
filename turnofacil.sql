@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-07-2022 a las 18:15:01
+-- Tiempo de generación: 03-07-2022 a las 23:37:24
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.2
 
@@ -41,10 +41,7 @@ INSERT INTO `especialidad` (`id_especialidad`, `especialidad`) VALUES
 (1, 'Traumatologia'),
 (3, 'Pediatria'),
 (5, 'cardiologia'),
-(6, 'wer'),
-(7, 'astronauta'),
-(8, 'c'),
-(9, 'sesa');
+(10, 'Psiquiatria');
 
 -- --------------------------------------------------------
 
@@ -190,7 +187,7 @@ CREATE TABLE `turno` (
 INSERT INTO `turno` (`id_turno`, `id_paciente`, `id_medico`, `fecha`, `hora`) VALUES
 (1, NULL, 10, '2022-08-12', '11:00:00'),
 (2, NULL, 12, '2022-08-22', '14:00:00'),
-(3, 1, 10, '2022-05-03', '14:00:00'),
+(3, NULL, 10, '2022-05-03', '14:00:00'),
 (4, NULL, 10, '2022-05-23', '17:00:00'),
 (5, NULL, 10, '2022-07-13', '10:00:00'),
 (6, 1, 11, '2022-08-23', '13:00:00'),
@@ -199,7 +196,7 @@ INSERT INTO `turno` (`id_turno`, `id_paciente`, `id_medico`, `fecha`, `hora`) VA
 (9, NULL, 14, '2022-07-01', '09:00:00'),
 (10, NULL, 15, '2022-08-23', '13:00:00'),
 (11, 1, 20, '2022-07-01', '09:00:00'),
-(12, 1, 20, '2022-04-23', '13:00:00'),
+(12, NULL, 20, '2022-04-23', '13:00:00'),
 (13, NULL, 18, '2022-02-01', '12:00:00');
 
 --
@@ -256,7 +253,7 @@ ALTER TABLE `turno`
 -- AUTO_INCREMENT de la tabla `especialidad`
 --
 ALTER TABLE `especialidad`
-  MODIFY `id_especialidad` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_especialidad` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `medico`
