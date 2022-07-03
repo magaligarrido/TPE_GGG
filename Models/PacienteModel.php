@@ -22,7 +22,7 @@ public function mostrar_turnos_filtrados($medico){
 }
 
 public function getTurnos($paciente){
-    $consulta = $this->db->prepare('SELECT t.*, m.id_especialidad, m.apellido, m.nombre FROM turno t inner join medico m on m.id_medico = t.id_medico where t.id_paciente = ?');
+    $consulta = $this->db->prepare('SELECT t.*, m.id_especialidad, m.apellido, m.nombre FROM turno t inner join medico m on m.id_medico = t.id_medico where t.id_paciente = ?  order by fecha, hora asc');
     $consulta->execute([$paciente]);
     $turnos = $consulta->fetchAll(PDO :: FETCH_OBJ);
     return $turnos;
