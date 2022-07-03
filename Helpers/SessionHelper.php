@@ -25,18 +25,18 @@ class SessionHelper{
         return true;
     }
     
-    public function checkLoggedIn() {
-        if (session_status() != PHP_SESSION_ACTIVE)
-            session_start();
-        if (!isset($_SESSION['USUARIO'])) {
-            header('Location: ' . BASE_URL);
-            die();
-        }       
-        if (!isset($_SESSION['dni'])) {
-            header('Location: ' . BASE_URL . 'loginPaciente');
-            die();
-        }   
-    }
+    // public function checkLoggedIn() {
+    //     if (session_status() != PHP_SESSION_ACTIVE)
+    //         session_start();
+    //     if (!isset($_SESSION['USUARIO'])) {
+    //         header('Location: ' . BASE_URL);
+    //         die();
+    //     }       
+    //     if (!isset($_SESSION['dni'])) {
+    //         header('Location: ' . BASE_URL . 'loginPaciente');
+    //         die();
+    //     }   
+    // }
 
     // function getLoggedUser() {
     //     if (session_status() != PHP_SESSION_ACTIVE)

@@ -7,9 +7,10 @@ class PacienteView{
         $this->smarty = new Smarty();
     }
 
-    function showPacienteHome( $error=""){
+    function showPacienteHome($turnos,  $error=""){
 
         $this->smarty->assign('error', $error);
+        $this->smarty->assign('turnos', $turnos);
 
         $this->smarty->display('./Templates/paciente.tpl');
 

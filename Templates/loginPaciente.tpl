@@ -3,7 +3,7 @@
         <div class="container-login">
           <h1 >{$titulo}</h1>
             <form class="contenido-form" action="verify-user" method="POST">
-                <input type="number" name="dni" placeholder="DNI">
+                <input type="number" name="dni" placeholder="DNI" required>
                 <input class="btn" style="width:{'50%'}" type="submit" value="Ingresar">
             </form>
             <a href="loginAdministrativo">Ingresar como administrador de institucion</a>

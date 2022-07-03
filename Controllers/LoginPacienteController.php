@@ -30,7 +30,6 @@ class LoginPacienteController{
     }
 
     function verify(){
-        if (!empty($_POST['dni'])){
             $userDNI = $_POST['dni'];  
             $usuario = $this->userModel->getUser($userDNI);
 
@@ -40,11 +39,7 @@ class LoginPacienteController{
             }  
             else{
                 $this->loginUserView->showLoginUser('DNI inexistente');
-            }  
-        }
-        else {
-            $this->loginUserView->showUserAdmin('Complete el campo DNI');
-        }
+            }
     }
 
      function register(){

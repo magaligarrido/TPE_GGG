@@ -66,7 +66,7 @@ switch($params[0]){
         break; 
 
 //---------- SECCION PACIENTE
-    case 'paciente' :
+    case 'paciente':
         $pacienteController->mainPaciente();
         break;
     case 'reservar_turno':
@@ -74,8 +74,12 @@ switch($params[0]){
             
         break;
     case 'get_turnos_medico':
-        if(count($params)==2)
+        if(count($params)==2){
+        if($params[1]=='paciente_location')
+            $pacienteController->showHomeLocation();
+        else
             $pacienteController->mostrar_turnos_filtrados($params[1]);
+        }
         if(count($params)>2)
             $pacienteController->reservar_turno($params[2]);
         break;
@@ -85,6 +89,20 @@ switch($params[0]){
     case 'mostrar_medicos_filtrados' :
         $pacienteController->mostrar_medicos_filtrados();
         break;
+
+
+//IMPLEMENTAR MATI
+    case 'cancelar_turno' :
+        if(count($params)>1)
+            $pacienteController->cancelar_turno($params[1]);
+        break;
+        case 'paciente_location':
+                $pacienteController->showHomeLocation();
+            break;
+
+
+
+
     default:
         echo('404 Page not found :(');
         break;

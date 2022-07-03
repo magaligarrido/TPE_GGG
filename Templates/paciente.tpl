@@ -21,5 +21,37 @@
         <br>
 
 <h3>TURNOS PENDIENTES</h3>
+
+<table style="border: 1px solid;
+    border-collapse: collapse;">
+<tr style="border: 1px solid;
+    border-collapse: collapse;">
+    <td style="border: 1px solid;
+    border-collapse: collapse;">fecha</td>
+    <td style="border: 1px solid;
+    border-collapse: collapse;">hora</td>
+    <td style="border: 1px solid;
+    border-collapse: collapse;">medico</td>
+    <td style="border: 1px solid;
+    border-collapse: collapse;">especialidad</td>
+
+</tr>
+ {foreach from=$turnos item=turno}
+ <tr style="border: 1px solid;
+    border-collapse: collapse;">
+        <td style="border: 1px solid;
+    border-collapse: collapse;">{$turno->fecha}</td>
+        <td style="border: 1px solid;
+    border-collapse: collapse;">{$turno->hora}</td>
+        <td style="border: 1px solid;
+    border-collapse: collapse;">{$turno->nombre}, {$turno->apellido}</td>
+        <td style="border: 1px solid;
+    border-collapse: collapse;">{$turno->id_especialidad}</td>
+        <td style="border: 1px solid;
+    border-collapse: collapse;"><a href="cancelar_turno/{$turno->id_turno}">cancelar</a></td>
+
+ </tr>
+ {/foreach} 
+<table>
     <h4>{$error}</h4>
 {include file = 'footer.tpl'} 

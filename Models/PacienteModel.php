@@ -21,10 +21,25 @@ public function mostrar_turnos_filtrados($medico){
     return $medico;
 }
 
+public function getTurnos($paciente){
+    $consulta = $this->db->prepare('SELECT t.*, m.id_especialidad, m.apellido, m.nombre FROM turno t inner join medico m on m.id_medico = t.id_medico where t.id_paciente = ?');
+    $consulta->execute([$paciente]);
+    $turnos = $consulta->fetchAll(PDO :: FETCH_OBJ);
+    return $turnos;
+}
+
 public function reservar_turno($paciente, $turno){
     $consulta = $this->db->prepare('UPDATE  turno t set id_paciente = ? where t.id_turno=?');
     $consulta->execute([$paciente, $turno]);
 }
 
+
+
+public function getPaciente($id){
+    $consulta = $this->db->prepare('select * from paciente where id_paciente=?');
+    $consulta->execute([$id]);
+    $paciente = $consulta->fetch(PDO :: FETCH_OBJ);
+    return $paciente;
+}
 
 }

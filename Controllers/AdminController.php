@@ -25,7 +25,9 @@ class AdminController{
     }
 
     public function mainAdmin(){ 
-        $this->sessionHelper->checkLoggedIn();
+        if(!$this->sessionHelper->isLogged()){
+            header("Location: ".BASE_URL."home");
+        }
         $this->adminView->showHome($this->adminModel->getMedicos($this->institucion), $this->adminModel->getSecretarias($this->institucion),$this->adminModel->getEspecialidades());
     }
 
@@ -55,12 +57,14 @@ class AdminController{
     public function relacionar(){
         $m = $this->adminModel->getMedico($_POST["id_medico"]);
         $s = $this->adminModel->getSecretaria($_POST["id_secretaria"]);
-    
+        $msg="";
         if($m && $s){
             $this->adminModel->relacionar($m->id_medico, $s->id_secretaria);
-            $this->adminView->showHome($this->adminModel->getMedicos($this->institucion), $this->adminModel->getSecretarias($this->institucion),$this->adminModel->getEspecialidades(), "Relacion Creada");
-        }else{
-        $this->adminView->showHome($this->adminModel->getMedicos($this->institucion), $this->adminModel->getSecretarias($this->institucion), $this->especialidades,"Hubo un error");
-        }
+            $msg = "Relacion Creada";
+        }else 
+            $msg="Hubo un error";
+
+        $this->adminView->showHome($this->adminModel->getMedicos($this->institucion), $this->adminModel->getSecretarias($this->institucion), $this->especialidades, $msg);
+        
     }
 }

@@ -21,13 +21,21 @@ class PacienteController{
     }
 
     public function mainPaciente(){
-        
-       $this->pacienteView->showPacienteHome();
+        $paciente = $this->sessionHelper->getPaciente();
+        $turnos = $this->pacienteModel->getTurnos($paciente);
+        $this->pacienteView->showPacienteHome($turnos);
+    }
+
+    public function showHomeLocation(){
+        $this->pacienteView->showPacienteLocation();
     }
 
     public function mostrar_medicos_filtrados(){
-        if(!(!empty($_POST["especialidad"]) && !empty($_POST["obra_social"])))
-            $this->pacienteView->showPacienteHome("no se ingresaron datos");
+        if(empty($_POST["especialidad"]) || empty($_POST["obra_social"])){
+            $paciente = $this->sessionHelper->getPaciente();
+        $turnos = $this->pacienteModel->getTurnos($paciente);
+        $this->pacienteView->showPacienteHome("no se ingresaron datos");
+        }
 
         $medicos = $this->pacienteModel->mostrar_medicos_filtrados($_POST["obra_social"], $_POST["especialidad"]);
 
@@ -41,10 +49,26 @@ class PacienteController{
      }
 
     public function reservar_turno($turno){
-        $paciente = $this->sessionHelper->getPaciente();
-        $this->pacienteModel->reservar_turno($paciente, $turno);
-        $this->pacienteView->showPacienteLocation("Turno reservado con exito");
+        $id_paciente = $this->sessionHelper->getPaciente();
+        $datosPaciente = $this->pacienteModel->getPaciente($id_paciente);
+        if($datosPaciente->nombre ==  $_POST["nombre"] && 
+            $datosPaciente->apellido == $_POST["apellido"] && 
+            $datosPaciente->direccion == $_POST["direccion"] && 
+            $datosPaciente->telefono ==  $_POST["tel"] &&
+            $datosPaciente->email == $_POST["email"] && 
+            $datosPaciente->obra_social == $_POST["os"] &&
+            $datosPaciente->numero_afiliado == $_POST["n_afiliado"]){
+                
+                $this->pacienteModel->reservar_turno($id_paciente, $turno);
+                $this->pacienteView->showPacienteLocation("Turno reservado con exito");
+        }else{
+           echo '<script type="text/javascript">alert("datos incorrectos")</script>';
+            header('Location:' . BASE_URL . 'home');
+    }
+         
      }
-     
+
+
+
 
 }
