@@ -35,7 +35,7 @@ class LoginPacienteController{
             $usuario = $this->userModel->getUser($userDNI);
 
             if ($usuario){
-                $this->sessionHelper->login($usuario->id_institucion, $usuario->dni);             
+                $this->sessionHelper->login($usuario->id_institucion, $usuario->id_paciente);             
                 $this->loginUserView->showUserLocation();
             }  
             else{

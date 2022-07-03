@@ -66,4 +66,12 @@ class SessionHelper{
         return;
         
     }
+
+    public function getPaciente(){
+        if (session_status() != PHP_SESSION_ACTIVE)
+            session_start();
+        if(isset($_SESSION["USUARIO"])){
+            return $_SESSION["USUARIO"];
+        }   
+    }
 }

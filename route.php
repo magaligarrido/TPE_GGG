@@ -19,6 +19,7 @@ $pacienteController =  new PacienteController();
 $params = explode('/', $action);
 
 
+
 switch($params[0]){
     case 'home':
         $loginAdministrativoController->login();
@@ -67,6 +68,22 @@ switch($params[0]){
 //---------- SECCION PACIENTE
     case 'paciente' :
         $pacienteController->mainPaciente();
+        break;
+    case 'reservar_turno':
+        if(count($params)>1)
+            
+        break;
+    case 'get_turnos_medico':
+        if(count($params)==2)
+            $pacienteController->mostrar_turnos_filtrados($params[1]);
+        if(count($params)>2)
+            $pacienteController->reservar_turno($params[2]);
+        break;
+    // case 'get_turnos_medico_fecha' :
+    //     $pacienteController->mostrar_turnos_filtrados_xFecha();
+    //     break;
+    case 'mostrar_medicos_filtrados' :
+        $pacienteController->mostrar_medicos_filtrados();
         break;
     default:
         echo('404 Page not found :(');
