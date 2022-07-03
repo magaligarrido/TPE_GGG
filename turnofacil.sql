@@ -89,6 +89,23 @@ INSERT INTO `medico` (`id_medico`, `id_institucion`, `usuario`, `password`, `nom
 
 -- --------------------------------------------------------
 
+--
+-- Estructura de tabla para la tabla `paciente`
+--
+
+CREATE TABLE `paciente` (
+  `id_paciente` int(10) NOT NULL,
+  `id_institucion` int(10) NOT NULL,
+  `dni` int(20) NOT NULL,
+  `nombre` varchar(20) NOT NULL,
+  `apellido` varchar(20) NOT NULL,
+  `direccion` varchar(20) NOT NULL,
+  `telefono` int(20) NOT NULL,
+  `email` varchar(20) NOT NULL,
+  `obra_social` varchar(20) NOT NULL,
+  `numero_afiliado` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 -- --------------------------------------------------------
 
 --
@@ -140,6 +157,12 @@ ALTER TABLE `medico`
   ADD KEY `id_institucion` (`id_institucion`),
   ADD KEY `id_especialidad` (`id_especialidad`);
 
+--
+-- Indices de la tabla `paciente`
+--
+ALTER TABLE `paciente`
+  ADD PRIMARY KEY (`id_paciente`),
+  ADD KEY `id_institucion` (`id_institucion`);
 
 --
 -- Indices de la tabla `secretaria`
@@ -189,6 +212,10 @@ ALTER TABLE `medico`
   ADD CONSTRAINT `medico_ibfk_3` FOREIGN KEY (`id_especialidad`) REFERENCES `especialidad` (`id_especialidad`);
 
 --
+-- Filtros para la tabla `paciente`
+--
+ALTER TABLE `paciente`
+  ADD CONSTRAINT `paciente_ibfk_1` FOREIGN KEY (`id_institucion`) REFERENCES `institucion` (`id_institucion`);
 
 --
 -- Filtros para la tabla `secretaria`
