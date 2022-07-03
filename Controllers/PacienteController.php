@@ -69,6 +69,10 @@ class PacienteController{
      }
 
 
-
+    public function cancelar_turno($turno){
+        $this->pacienteModel->cancelar_turno($turno);
+        $this->pacienteView->showPacienteLocation();//mostrar turnos
+     }
+     
 
 }

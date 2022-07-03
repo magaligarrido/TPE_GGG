@@ -33,7 +33,10 @@ public function reservar_turno($paciente, $turno){
     $consulta->execute([$paciente, $turno]);
 }
 
-
+public function cancelar_turno($turno){
+    $consulta = $this->db->prepare('UPDATE turno t set id_paciente = null where t.id_turno=?');
+    $consulta->execute([$turno]);
+}
 
 public function getPaciente($id){
     $consulta = $this->db->prepare('select * from paciente where id_paciente=?');
