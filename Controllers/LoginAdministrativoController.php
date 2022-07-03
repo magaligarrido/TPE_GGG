@@ -9,7 +9,7 @@ class LoginAdministrativoController{
     private $sessionHelper;
 
     function __construct(){
-        $this->adminModel = new AdminModel();
+        $this->userModel = new UserModel();
         $this->loginAdminView = new LoginAdminView();
         $this->sessionHelper = new SessionHelper();
     }
@@ -18,6 +18,7 @@ class LoginAdministrativoController{
 
     public function login(){
         $this->loginAdminView->showLoginAdmin();
+        //$this->sessionHelper->isLogged()
     }
 
     public function verify(){
@@ -26,7 +27,7 @@ class LoginAdministrativoController{
             $pass = $_POST['pass'];
             
             
-            $usuarioAdministrativo = $this->adminModel->getUser($usuario);
+            $usuarioAdministrativo = $this->userModel->getUser($usuario);
             if ($usuarioAdministrativo && password_verify($pass, ($usuarioAdministrativo->pass))){
                 $this->sessionHelper->login($usuarioAdministrativo);           
                 $this->loginAdminView->showAdminLocation();
@@ -36,7 +37,7 @@ class LoginAdministrativoController{
             }  
         }
         else {
-            $this->loginAdminView->showLoginAdmin('Complete el campo Usuario');
+            $this->loginAdminView->showLoginAdmin('Complete todos los campos');
         }
     }
 

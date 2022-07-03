@@ -30,10 +30,10 @@ class AdminController{
     }
 
     public function crear_medico(){
-        $p=password_hash($_POST["password"], PASSWORD_BCRYPT);
+        $p = password_hash($_POST["password"], PASSWORD_BCRYPT);
         $this->adminModel->add_m($this->sessionHelper->showInstitucion(),$_POST["usuario"], $p, $_POST["nombre"],$_POST["apellido"], $_POST["id_especialidad"]);
         //----------------------------------------------falta mostrar si se agrego
-        $this->adminView->showHome($this->adminModel->getMedicos($this->institucion), $this->adminModel->getSecretarias($this->institucion),$this->adminModel->getEspecialidades());
+        $this->adminView->showHome($this->adminModel->getMedicos($this->institucion),$this->adminModel->getSecretarias($this->institucion),$this->adminModel->getEspecialidades());
 
     }
     

@@ -9,14 +9,8 @@ class AdminModel{
 
    }
 
-   public function getUser($usuario){
-    $consulta = $this->db->prepare('SELECT * FROM institucion WHERE usuario = ? ');
-    $consulta->execute([$usuario]);
-    $user = $consulta->fetch(PDO :: FETCH_OBJ);
-    return $user;
-   }
 
-   public function add_m($idInstitucion,$u, $p, $n, $a, $idEspecialidad){header('Location: ' . $u.gettype());
+   public function add_m($idInstitucion,$u, $p, $n, $a, $idEspecialidad){
     $consulta = $this->db->prepare('INSERT INTO medico(`id_institucion`,`usuario`, `password`, `nombre`, `apellido`, `id_especialidad`) VALUES (?,?,?,?,?,?)');
     $consulta->execute(array($idInstitucion,$u, $p, $n, $a, $idEspecialidad));
 
@@ -64,8 +58,8 @@ class AdminModel{
    public function getEspecialidades(){
     $consulta = $this->db->prepare('SELECT * FROM especialidad');
     $consulta->execute();
-    $s = $consulta->fetchAll(PDO::FETCH_OBJ);
-    return $s;
+    $especialidades = $consulta->fetchAll(PDO::FETCH_OBJ);
+    return $especialidades;
    }
 
    public function relacionar($m, $s){

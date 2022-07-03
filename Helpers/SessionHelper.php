@@ -25,11 +25,10 @@ class SessionHelper{
     function checkLoggedIn() {
         if (session_status() != PHP_SESSION_ACTIVE)
             session_start();
-        if (!isset($_SESSION['DNI'])) {
+        if (!isset($_SESSION['USUARIO'])) {
             header('Location: ' . BASE_URL);
             die();
-        }
-        session_destroy();       
+        }       
     }
 
     // function getLoggedUser() {
