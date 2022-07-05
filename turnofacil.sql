@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-07-2022 a las 23:37:24
+-- Tiempo de generación: 05-07-2022 a las 02:50:08
 -- Versión del servidor: 10.1.38-MariaDB
 -- Versión de PHP: 7.3.2
 
@@ -185,11 +185,11 @@ CREATE TABLE `turno` (
 --
 
 INSERT INTO `turno` (`id_turno`, `id_paciente`, `id_medico`, `fecha`, `hora`) VALUES
-(1, NULL, 10, '2022-08-12', '11:00:00'),
+(1, 1, 10, '2022-08-12', '11:00:00'),
 (2, NULL, 12, '2022-08-22', '14:00:00'),
 (3, NULL, 10, '2022-05-03', '14:00:00'),
 (4, NULL, 10, '2022-05-23', '17:00:00'),
-(5, NULL, 10, '2022-07-13', '10:00:00'),
+(5, 1, 10, '2022-07-13', '10:00:00'),
 (6, 1, 11, '2022-08-23', '13:00:00'),
 (7, NULL, 12, '2022-07-01', '09:00:00'),
 (8, NULL, 15, '2022-08-23', '13:00:00'),
@@ -197,7 +197,15 @@ INSERT INTO `turno` (`id_turno`, `id_paciente`, `id_medico`, `fecha`, `hora`) VA
 (10, NULL, 15, '2022-08-23', '13:00:00'),
 (11, 1, 20, '2022-07-01', '09:00:00'),
 (12, NULL, 20, '2022-04-23', '13:00:00'),
-(13, NULL, 18, '2022-02-01', '12:00:00');
+(13, NULL, 18, '2022-02-01', '12:00:00'),
+(14, NULL, 10, '2022-09-12', '08:00:00'),
+(15, NULL, 10, '2022-10-12', '08:00:00'),
+(16, NULL, 10, '2022-09-02', '10:00:00'),
+(17, NULL, 10, '2022-09-22', '08:00:00'),
+(18, NULL, 10, '2022-07-14', '09:00:00'),
+(19, NULL, 10, '2022-11-02', '17:00:00'),
+(20, NULL, 10, '2022-09-01', '14:00:00'),
+(21, NULL, 10, '2022-09-30', '11:00:00');
 
 --
 -- Índices para tablas volcadas
@@ -277,7 +285,7 @@ ALTER TABLE `secretaria`
 -- AUTO_INCREMENT de la tabla `turno`
 --
 ALTER TABLE `turno`
-  MODIFY `id_turno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_turno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Restricciones para tablas volcadas

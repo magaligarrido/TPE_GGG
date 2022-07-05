@@ -21,6 +21,23 @@ public function mostrar_turnos_filtrados($medico){
     return $medico;
 }
 
+public function mostrar_turnos_filtrados_tarde($medico, $fecha){
+   
+    $consulta = $this->db->prepare('SELECT t.* FROM turno t, medico m where m.id_medico = ? and m.id_medico = t.id_medico and t.id_paciente is null and fecha = ? and hora>=?');
+
+    $consulta->execute([$medico, $fecha, '12:00:00am']);
+    $medico = $consulta->fetchAll(PDO :: FETCH_OBJ);
+    return $medico;
+}
+public function mostrar_turnos_filtrados_manana($medico, $fecha){
+ 
+    $consulta = $this->db->prepare('SELECT t.* FROM turno t, medico m where m.id_medico = ? and m.id_medico = t.id_medico and t.id_paciente is null and fecha = ? and hora<?');
+
+    $consulta->execute([$medico, $fecha, '12:00:00am']);
+    $medico = $consulta->fetchAll(PDO :: FETCH_OBJ);
+    return $medico;
+}
+
 public function getTurnos($paciente){
     $consulta = $this->db->prepare('SELECT t.*, m.id_especialidad, m.apellido, m.nombre FROM turno t inner join medico m on m.id_medico = t.id_medico where t.id_paciente = ?  order by fecha, hora asc');
     $consulta->execute([$paciente]);

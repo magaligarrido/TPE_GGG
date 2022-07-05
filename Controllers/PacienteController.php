@@ -43,7 +43,15 @@ class PacienteController{
      }
 
     public function mostrar_turnos_filtrados($medico){
-        $turnos = $this->pacienteModel->mostrar_turnos_filtrados($medico);
+        if(!empty($_POST['dia']) && !empty($_POST['hora'])){
+            if($_POST['hora']=="am")
+                $turnos = $this->pacienteModel->mostrar_turnos_filtrados_manana($medico, $_POST['dia']);
+                else
+                $turnos = $this->pacienteModel->mostrar_turnos_filtrados_tarde($medico, $_POST['dia']);
+
+        }
+        else 
+            $turnos = $this->pacienteModel->mostrar_turnos_filtrados($medico);
 
         $this->pacienteView->mostrar_turnos_filtrados($turnos);
      }

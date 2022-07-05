@@ -17,7 +17,7 @@ $adminController =  new AdminController();
 $loginPacienteController = new LoginPacienteController();
 $pacienteController =  new PacienteController();
 $params = explode('/', $action);
-
+$auxMedico="";
 
 
 switch($params[0]){
@@ -69,20 +69,39 @@ switch($params[0]){
     case 'paciente':
         $pacienteController->mainPaciente();
         break;
-    case 'reservar_turno':
-        if(count($params)>1)
+    // case 'reservar_turno':
+    //     if(count($params)>1)
             
-        break;
+    //     break;
+
     case 'get_turnos_medico':
         if(count($params)==2){
-        if($params[1]=='paciente_location')
-            $pacienteController->showHomeLocation();
-        else
-            $pacienteController->mostrar_turnos_filtrados($params[1]);
+            if($params[1]=='paciente_location')
+                $pacienteController->showHomeLocation();
+            else{
+                if (session_status() != PHP_SESSION_ACTIVE)   
+                    session_start();
+                if($params[1]!='filtrar_fecha'){
+                    $_SESSION["ultimo_medico"] = $params[1];
+                    $pacienteController->mostrar_turnos_filtrados($params[1]);
+                }else{
+                    $pacienteController->mostrar_turnos_filtrados($_SESSION["ultimo_medico"]);
+                }
+            
+            
+            }
         }
-        if(count($params)>2)
-            $pacienteController->reservar_turno($params[2]);
+        //get_turnos_medico/1
+        //get_turnos_medico/1/reservar
+        //get_turnos_medico/filtrar_fecha
+        //get_turnos_medico/filtrar_fecha/reservar
+        if(count($params)==3){
+                $pacienteController->reservar_turno($params[2]);
+          
+        } 
         break;
+
+
     // case 'get_turnos_medico_fecha' :
     //     $pacienteController->mostrar_turnos_filtrados_xFecha();
     //     break;
@@ -91,7 +110,6 @@ switch($params[0]){
         break;
 
 
-//IMPLEMENTAR MATI
     case 'cancelar_turno' :
         if(count($params)>1)
             $pacienteController->cancelar_turno($params[1]);
