@@ -55,6 +55,11 @@ public function cancelar_turno($turno){
     $consulta->execute([$turno]);
 }
 
+public function confirmar_turno($turno){
+    $consulta = $this->db->prepare('UPDATE turno t set confirmado = 1 where t.id_turno=?');
+    $consulta->execute([$turno]);
+}
+
 public function getPaciente($id){
     $consulta = $this->db->prepare('select * from paciente where id_paciente=?');
     $consulta->execute([$id]);

@@ -114,10 +114,15 @@ switch($params[0]){
         if(count($params)>1)
             $pacienteController->cancelar_turno($params[1]);
         break;
-        case 'paciente_location':
-                $pacienteController->showHomeLocation();
-            break;
 
+    case 'paciente_location':
+            $pacienteController->showHomeLocation();
+        break;
+
+    case 'confirmar_turno' :
+        if(count($params)>1)
+            $pacienteController->confirmar_turno($params[1]);
+        break;
 
 
 

@@ -68,7 +68,7 @@ class PacienteController{
             $datosPaciente->numero_afiliado == $_POST["n_afiliado"]){
                 
                 $this->pacienteModel->reservar_turno($id_paciente, $turno);
-                $this->pacienteView->showPacienteLocation("Turno reservado con exito");
+                $this->pacienteView->showPacienteLocation();
         }else{
            echo '<script type="text/javascript">alert("datos incorrectos")</script>';
             header('Location:' . BASE_URL . 'home');
@@ -79,6 +79,10 @@ class PacienteController{
 
     public function cancelar_turno($turno){
         $this->pacienteModel->cancelar_turno($turno);
+        $this->pacienteView->showPacienteLocation();//mostrar turnos
+     }
+    public function confirmar_turno($turno){
+        $this->pacienteModel->confirmar_turno($turno);
         $this->pacienteView->showPacienteLocation();//mostrar turnos
      }
      

@@ -49,9 +49,14 @@
     border-collapse: collapse;">{$turno->id_especialidad}</td>
         <td style="border: 1px solid;
     border-collapse: collapse;"><a href="cancelar_turno/{$turno->id_turno}">cancelar</a></td>
-
+    {if $turno->confirmado neq 1}
+        <td style="border: 1px solid;
+    border-collapse: collapse;"><a href="confirmar_turno/{$turno->id_turno}">confirmar</a></td>
+    {else}
+<td style="border: 1px solid;
+    border-collapse: collapse;">confirmado</td>
+    {/if}
  </tr>
  {/foreach} 
 <table>
     <h4>{$error}</h4>
-{include file = 'footer.tpl'} 
